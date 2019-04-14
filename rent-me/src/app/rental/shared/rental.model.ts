@@ -1,5 +1,6 @@
 export class Rental {
-    id: string;
+// tslint:disable-next-line: variable-name
+    _id: string;
     title: string;
     city: string;
     street: string;
