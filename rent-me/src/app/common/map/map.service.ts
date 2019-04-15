@@ -6,12 +6,12 @@ export class MapService {
 
     private geoCoder;
 
-    public geocodeLocation(location: string): Observable<any> {
+    geocodeLocation(location: string): Observable<any> {
         this.geoCoder = new (window as any).google.maps.Geocoder();
 
         return new Observable((observer) => {
             this.geoCoder.geocode({address: location}, (result, status) => {
-                if (status === 'OK') {
+                if (status === (window as any).google.maps.GeocoderStatus.OK) {
                     const geometry = result[0].geometry.location;
                     observer.next({lat: geometry.lat(), lng: geometry.lng()});
                 } else {

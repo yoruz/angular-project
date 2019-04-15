@@ -3,6 +3,7 @@ import { MapComponent } from './map.component';
 import { AgmCoreModule } from '@agm/core';
 
 import { MapService } from './map.service';
+import { NgPipesModule } from 'ngx-pipes';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { MapService } from './map.service';
   imports: [
     AgmCoreModule.forRoot({
         apiKey: 'AIzaSyArk3xLwHWwifm-0EicRbCkDHEQHJlcEQc'
-    })
+    }),
+    NgPipesModule
   ],
   exports: [
     MapComponent,
