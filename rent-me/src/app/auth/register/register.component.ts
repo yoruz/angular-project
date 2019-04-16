@@ -12,7 +12,8 @@ export class RegisterComponent implements OnInit {
   formData: any = {};
   errors: any[] = [];
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService,
+              private router: Router) { }
 
   ngOnInit() {
   }
