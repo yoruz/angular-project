@@ -1,28 +1,54 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, ChangeDetectorRef, OnInit, OnDestroy } from '@angular/core';
 import { MapService } from './map.service';
+
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnDestroy {
 
   @Input() location: string;
 
-  lat = 42.666913;
-  lng = 23.352256;
+  @Input() locationSubject: Subject<any>;
 
-  constructor(private mapService: MapService) { }
+  isPositionError = false;
+
+  lat: number;
+  lng: number;
+
+  constructor(private mapService: MapService,
+              private ref: ChangeDetectorRef) { }
 
   ngOnInit() {
+    if (this.locationSubject) {
+      this.locationSubject.subscribe((location: string) => {
+        this.getLocation(location);
+      });
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.locationSubject) {
+      this.locationSubject.unsubscribe();
+    }
+  }
+
+  getLocation(location) {
+    this.mapService.getGeoLocation(location).subscribe(
+      (coordinates) => {
+        this.lat = coordinates.lat;
+        this.lng = coordinates.lng;
+
+        this.ref.detectChanges();
+      }, () => {
+        this.isPositionError = true;
+      });
   }
 
   mapReadyHandler() {
-    this.mapService.geocodeLocation(this.location).subscribe((coordinates) => {
-      this.lat = coordinates.lat;
-      this.lng = coordinates.lng;
-    });
+    this.getLocation(this.location);
   }
-
 }

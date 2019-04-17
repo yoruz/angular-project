@@ -18,16 +18,18 @@ router.get('', function(req, res) {
 
 router.get('/:id', function(req, res) {
     const rentalId = req.params.id;
-
+  
     Rental.findById(rentalId)
-        .populate('user', 'username -_id')
-        .populate('bookings', 'startAt endAt -_id')
-        .exec(function(err, foundRental) {
-            if(err) {
-                return res.status(422).send({errors: [{title: 'Rental Error!', detail: 'Could not find the rental!'}]});
-            }
-            return res.json(foundRental);
-        });
-});
+          .populate('user', 'username -_id')
+          .populate('bookings', 'startAt endAt -_id')
+          .exec(function(err, foundRental) {
+  
+      if (err || !foundRental) {
+        return res.status(422).send({errors: [{title: 'Rental Error!', detail: 'Could not find Rental!'}]});
+      }
+  
+      return res.json(foundRental);
+    });
+  });
 
 module.exports = router;
