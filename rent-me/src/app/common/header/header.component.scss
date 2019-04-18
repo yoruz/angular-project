@@ -55,11 +55,12 @@
     color: white;
 }
 
-  .dropdown-item {
-    font-size: 14px;
+.dropdown-item {
+  font-size: 14px;
 
-    &:active, &:focus {
-      background-color: red;
-    }
+  &:active, &:focus {
+    background-color: red !important;
+    color: white !important;
   }
+}
 }

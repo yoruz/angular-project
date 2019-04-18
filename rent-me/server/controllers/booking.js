@@ -5,7 +5,7 @@ const User = require('../models/user');
 const MongooseHelper = require('../helpers/mongoose');
 const moment = require('moment');
 
-exports.createBooking = function(req, res) {
+exports.createBooking = function (req, res) {
     const { startAt, endAt, totalPrice, guests, days, rental } = req.body;
     const user = res.locals.user;
 
@@ -14,7 +14,7 @@ exports.createBooking = function(req, res) {
     Rental.findById(rental._id)
         .populate('bookings')
         .populate('user')
-        .exec(function(err, foundRental) {
+        .exec(function (err, foundRental) {
             if (err) {
                 return res.status(422).send({ errors: MongooseHelper.normalizeErrors(err.errors) });
             }
@@ -28,15 +28,15 @@ exports.createBooking = function(req, res) {
                 booking.rental = foundRental;
                 foundRental.bookings.push(booking);
 
-                booking.save(function(err) {
+                booking.save(function (err) {
                     if (err) {
                         return res.status(422).send({ errors: MongooseHelper.normalizeErrors(err.errors) });
                     }
 
                     foundRental.save();
-                    User.update({_id: user.id}, {$push: {bookings: booking}}, function(){});
+                    User.update({ _id: user.id }, { $push: { bookings: booking } }, function () { });
 
-                    return res.json({startAt: booking.startAt, endAt: booking.endAt});
+                    return res.json({ startAt: booking.startAt, endAt: booking.endAt });
                 });
             } else {
                 return res.status(422).send({ errors: [{ title: 'Invalid booking!', detail: 'Choosen dates are already taken!' }] });
@@ -45,11 +45,25 @@ exports.createBooking = function(req, res) {
         });
 }
 
+exports.getUserBookings = function (req, res) {
+    const user = res.locals.user;
+
+    Booking.where({ user })
+        .populate('rental')
+        .exec(function (err, foundBookings) {
+            if (err) {
+                return res.status(422).send({ errors: MongooseHelper.normalizeErrors(err.errors) });
+            }
+
+            return res.json(foundBookings);
+        });
+}
+
 function isValidBooking(proposedBooking, rental) {
     let isValid = true;
 
     if (rental.bookings && rental.bookings.length > 0) {
-        isValid = rental.bookings.every(function(booking) {
+        isValid = rental.bookings.every(function (booking) {
             const proposedStart = moment(proposedBooking.startAt);
             const proposedEnd = moment(proposedBooking.endAt);
 

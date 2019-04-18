@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './common/header/header.component';
 
 import { RentalModule } from './rental/rental.module';
+import { ManageModule } from './manage/manage.module';
 import { AuthModule } from './auth/auth.module';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -19,7 +20,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -28,7 +29,8 @@ const routes: Routes = [
     AuthModule,
     NgbModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ManageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

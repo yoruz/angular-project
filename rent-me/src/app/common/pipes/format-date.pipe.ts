@@ -7,6 +7,6 @@ import * as moment from 'moment';
 export class FormatDatePipe implements PipeTransform {
 
   transform(value: string): string {
-    return moment(value).format('Y/MM/DD');
+    return moment(value).format('YYYY/MM/DD');
   }
 }

@@ -8,7 +8,12 @@ a {
 /* SINGLE CARD STYLES*/
 .rentme-card {
   border: none;
+
   margin-bottom: 25px;
+  
+  .card-img-top {
+    block-size: 180px;
+  }
 
   .card-block {
     padding-top: 8px;
