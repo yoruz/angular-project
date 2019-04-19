@@ -32,8 +32,4 @@ export class RentalService {
     return this.http.delete(`/api/v1/rentals/${rentalId}`);
   }
 
-  verifyRentalUser(rentalId: string): Observable<any> {
-    return this.http.get(`/api/v1/rentals/${rentalId}/verify-user`);
-  }
-
 }
