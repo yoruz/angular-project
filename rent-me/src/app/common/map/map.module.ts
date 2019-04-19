@@ -3,7 +3,6 @@ import { AgmCoreModule } from '@agm/core';
 import { CommonModule } from '@angular/common';
 
 import { MapComponent } from './map.component';
-import { CamelizePipe } from 'ngx-pipes';
 import { MapService } from './map.service';
 
 @NgModule({
@@ -20,8 +19,7 @@ import { MapService } from './map.service';
     CommonModule
   ],
   providers: [
-    MapService,
-    CamelizePipe
+    MapService
   ]
 })
 export class MapModule { }
