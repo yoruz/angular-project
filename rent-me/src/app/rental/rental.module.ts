@@ -20,7 +20,6 @@ import { HelperService } from '../common/service/helper.service';
 import { UppercasePipe } from '../common/pipes/uppercase.pipe';
 
 import { AuthGuard } from '../auth/shared/auth.guard';
-import { RentalGuard } from './shared/rental.guard';
 import { RentalCreateComponent } from './rental-create/rental-create.component';
 
 
@@ -60,8 +59,7 @@ const routes: Routes = [
     RentalService,
     HelperService,
     BookingService,
-    UcWordsPipe,
-    RentalGuard
+    UcWordsPipe
   ]
 })
 export class RentalModule {}

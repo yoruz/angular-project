@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,10 +11,7 @@ import { RentalModule } from './rental/rental.module';
 import { ManageModule } from './manage/manage.module';
 import { AuthModule } from './auth/auth.module';
 import { ToastrModule } from 'ngx-toastr';
-
-const routes: Routes = [
-  {path: '', redirectTo: '/rentals', pathMatch: 'full'}
-];
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +19,7 @@ const routes: Routes = [
     HeaderComponent,
   ],
   imports: [
-    RouterModule.forRoot(routes),
+    AppRoutingModule,
     BrowserModule,
     RentalModule,
     AuthModule,

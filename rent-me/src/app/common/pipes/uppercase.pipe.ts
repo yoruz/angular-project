@@ -1,3 +1,4 @@
+// tslint:disable: indent
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({

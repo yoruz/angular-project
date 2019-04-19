@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Rental } from '../shared/rental.model';
 import { RentalService } from '../shared/rental.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 import { Router } from '@angular/router';
 
@@ -17,6 +18,7 @@ export class RentalCreateComponent implements OnInit {
   errors: any[] = [];
 
   constructor(private rentalService: RentalService,
+              private toastr: ToastrService,
               private router: Router) { }
 
   ngOnInit() {
@@ -27,6 +29,7 @@ export class RentalCreateComponent implements OnInit {
   createRental() {
     this.rentalService.createRental(this.newRental).subscribe((rental: Rental) => {
       this.router.navigate([`/rentals/${rental._id}`]);
+      this.toastr.success('Your rental has been successfully created!', 'Success!');
     },
     (errorResponse: HttpErrorResponse) => {
       this.errors = errorResponse.error.errors;

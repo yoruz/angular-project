@@ -87,7 +87,7 @@ export class RentalDetailBookingComponent implements OnInit {
         this.newBooking = new Booking();
         this.modalRef.close();
         this.resetDatePicker();
-        this.toastr.success('Booking has been successfully created! Check your booking details in the manage section.', 'Success!');
+        this.toastr.success('Booking has been successfully created! Check your booking details in the Owner Section.', 'Success!');
       },
       (errorResponse: any) => {
         this.errors = errorResponse.error.errors;

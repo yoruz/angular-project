@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../shared/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private auth: AuthService,
               private router: Router,
+              private toastr: ToastrService,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -50,6 +52,7 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.loginForm.value).subscribe(
       (token) => {
         this.router.navigate(['/rentals']);
+        this.toastr.success('Login Successful!', 'Yeah!');
       },
       (errorResponse) => {
         this.errors = errorResponse.error.errors;

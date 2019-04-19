@@ -42,7 +42,7 @@ export class MapService {
 		});
 	}
 
-	public getGeoLocation(location: string): Observable<any> {
+	getGeoLocation(location: string): Observable<any> {
 
 		if (this.isLocationCached(location)) {
 			return observableOf(this.locationCache[this.camelize(location)]);
