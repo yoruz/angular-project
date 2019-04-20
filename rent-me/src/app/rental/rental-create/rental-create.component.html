@@ -10,8 +10,14 @@
                    class="form-control"
                    id="title"
                    name="title"
+                   #title="ngModel"
                    [(ngModel)]="newRental.title"
                    required>
+          </div>
+          <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger">
+            <div *ngIf="title?.errors.required">
+              Title field is required.
+            </div>
           </div>
 
           <div class="form-group">
@@ -20,8 +26,14 @@
                    class="form-control"
                    id="city"
                    name="city"
+                   #city="ngModel"
                    [(ngModel)]="newRental.city"
                    required>
+          </div>
+          <div *ngIf="city.invalid && (city.dirty || city.touched)" class="alert alert-danger">
+            <div *ngIf="city?.errors.required">
+              City field is required.
+            </div>
           </div>
 
           <div class="form-group">
@@ -30,8 +42,14 @@
                    class="form-control"
                    id="street"
                    name="street"
+                   #street="ngModel"
                    [(ngModel)]="newRental.street"
                    required>
+          </div>
+          <div *ngIf="street.invalid && (street.dirty || street.touched)" class="alert alert-danger">
+            <div *ngIf="street?.errors.required">
+              Street field is required.
+            </div>
           </div>
 
           <div class="form-group">
@@ -40,10 +58,16 @@
             <select class="form-control"
                     id="category"
                     name="category"
+                    #category="ngModel"
                     [(ngModel)]="newRental.category"
                     required>
               <option *ngFor="let category of rentalCategories"> {{category}} </option>
             </select>
+          </div>
+          <div *ngIf="category.invalid && (category.dirty || category.touched)" class="alert alert-danger">
+            <div *ngIf="category?.errors.required">
+              Category field is required.
+            </div>
           </div>
 
           <div class="form-group">
@@ -54,8 +78,14 @@
                    id="image"
                    placeholder="Copy the image url here..."
                    name="image"
+                   #image="ngModel"
                    [(ngModel)]="newRental.image"
                    required>
+          </div>
+          <div *ngIf="image.invalid && (image.dirty || image.touched)" class="alert alert-danger">
+            <div *ngIf="image?.errors.required">
+              Image field is required.
+            </div>
           </div>
 
           <div class="form-group">
@@ -64,8 +94,14 @@
                    class="form-control"
                    id="bedrooms"
                    name="bedrooms"
+                   #bedrooms="ngModel"
                    [(ngModel)]="newRental.bedrooms"
                    required>
+          </div>
+          <div *ngIf="bedrooms.invalid && (bedrooms.dirty || bedrooms.touched)" class="alert alert-danger">
+            <div *ngIf="bedrooms?.errors.required">
+              Bedrooms field is required.
+            </div>
           </div>
 
           <div class="form-group">
@@ -75,9 +111,15 @@
                       class="form-control"
                       id="description"
                       name="description"
+                      #description="ngModel"
                       [(ngModel)]="newRental.description"
                       required>
             </textarea>
+          </div>
+          <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
+            <div *ngIf="description?.errors.required">
+              Description field is required.
+            </div>
           </div>
 
           <div class="form-group">
@@ -91,8 +133,14 @@
                      class="form-control"
                      id="dailyRate"
                      name="dailyRate"
+                     #dailyRate="ngModel"
                      [(ngModel)]="newRental.dailyRate"
                      required>
+            </div>
+          </div>
+          <div *ngIf="dailyRate.invalid && (dailyRate.dirty || dailyRate.touched)" class="alert alert-danger">
+            <div *ngIf="dailyRate?.errors.required">
+              Daily Rate field is required.
             </div>
           </div>
 
