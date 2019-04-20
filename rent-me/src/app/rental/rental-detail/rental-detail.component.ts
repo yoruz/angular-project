@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { RentalService } from '../shared/rental.service';
 import { Rental } from '../shared/rental.model';
 
-
 import * as moment from 'moment';
 
 @Component({

@@ -1,9 +1,11 @@
 import { Booking } from '../../booking/shared/booking.model';
 
+// tslint:disable: indent
 export class Rental {
 
 	static readonly CATEGORIES = ['house', 'apartment', 'condo'];
 
+// tslint:disable-next-line: variable-name
 	_id: string;
 	title: string;
 	city: string;
